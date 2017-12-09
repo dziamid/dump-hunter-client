@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { CurrencyChange } from '../../types/index';
 import { splitEvery, take, pipe } from 'ramda';
+// import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export interface OwnProps {
   currencyChanges: CurrencyChange[];
@@ -25,6 +26,9 @@ const Cell = styled.div`
   background: papayawhip;
   color: palevioletred;
   flex: 1;
+  line-height: 30px;
+  padding: 0 5px;
+  margin: 5px;
 `;
 
 const limitRows = take<CurrencyChange>(6 * 5);
