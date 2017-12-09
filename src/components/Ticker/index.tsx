@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 
 export interface OwnProps {
 
@@ -7,11 +8,15 @@ export interface OwnProps {
 export interface Props extends OwnProps {
 }
 
-export const Ticker = ({}: Props) => {
+const Root = styled.div`
+  background: papayawhip;
+  color: palevioletred; 
+`;
 
+export const Ticker = ({}: Props) => {
   return (
-    <div>
+    <Root>
       Ticker component!
-    </div>
+    </Root>
   );
 };
