@@ -38,13 +38,17 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
   },
   "devDependencies": {
     "@types/jest": "^21.1.8",
     "@types/node": "^8.0.57",
     "@types/react": "^16.0.28",
-    "@types/react-dom": "^16.0.3"
+    "@types/react-dom": "^16.0.3",
+    "react-docgen-typescript": "^1.1.0",
+    "react-styleguidist": "^6.0.33"
   },
   "jest": {
     "mapCoverage": true,
