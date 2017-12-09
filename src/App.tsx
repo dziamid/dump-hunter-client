@@ -5,8 +5,7 @@ import { Ticker } from './components/Ticker/index';
 export const App = () => {
   return (
     <div>
-      <Ticker/>
-      <Ticker/>
+      <Ticker currencyChanges={[]}/>
     </div>
   );
 };
