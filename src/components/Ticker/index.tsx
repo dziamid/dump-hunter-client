@@ -1,11 +1,14 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { CurrencyChange } from '../../types/index';
-import { splitEvery, take, pipe } from 'ramda';
-// import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { UUID } from '../../utils/uuid';
+
+const {SlideInDown} = require('animate-css-styled-components');
+
+export type TickerRow = (CurrencyChange & UUID)[];
 
 export interface OwnProps {
-  currencyChanges: CurrencyChange[];
+  rows: TickerRow[];
 }
 
 export interface Props extends OwnProps {
@@ -31,25 +34,33 @@ const Cell = styled.div`
   margin: 5px;
 `;
 
-const limitRows = take<CurrencyChange>(6 * 5);
-const splitRows = splitEvery(5);
-const transpileRows = pipe(limitRows, splitRows);
+const getRowKey = (row: TickerRow) => row[0].uuid;
 
-export const Ticker = ({currencyChanges}: Props) => {
-
-  const rows = transpileRows(currencyChanges);
+export const Ticker = ({rows}: Props) => {
+  const [first, ...following] = rows;
 
   return (
-    <Table>
-      {rows.map((row) => (
-        <Row>
-          {row.map(({name, price, change}) => (
-            <Cell>
-              {name}
-            </Cell>
-          ))}
-        </Row>
-      ))}
-    </Table>
+    <div style={{overflow: 'hidden', height: 5 * 40, border: '1px solid black'}}>
+      <Table>
+        <SlideInDown duration="0.8s" delay="1s">
+          <Row key={getRowKey(first)}>
+            {first.map(({name, price, change}) => (
+              <Cell>
+                {name}
+              </Cell>
+            ))}
+          </Row>
+        </SlideInDown>
+        {following.map((row) => (
+          <Row key={getRowKey(row)}>
+            {row.map(({name, price, change}) => (
+              <Cell>
+                {name}
+              </Cell>
+            ))}
+          </Row>
+        ))}
+      </Table>
+    </div>
   );
 };
