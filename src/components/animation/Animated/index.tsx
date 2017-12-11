@@ -1,20 +1,21 @@
 import * as React from 'react';
-import { TransitionProps, Transition, TransitionState } from '../index';
-import { AnimationType, getDefaultStyles, getTransitionStyles, transitionStyles } from '../types/index';
+import {
+  TransitionProps, Transition, TransitionState, AnimationType, getTransitionStyles,
+  splitTimeout
+} from '../index';
 
-interface AnimatedProps {
-  in: boolean;
-  type?: AnimationType;
-  duration?: number;
+interface AnimatedProps extends TransitionProps {
+  type: AnimationType;
+  timeout: number | { enter: number, exit: number };
 }
 
 export const Animated: React.SFC<AnimatedProps> = (props) => {
-  const {in: inProp, type = AnimationType.fade, duration = 300, children} = props;
+  const {type, timeout, children, ...other} = props;
 
   return (
-    <Transition in={inProp} timeout={duration}>
+    <Transition timeout={splitTimeout(timeout)} {...other}>
       {(state: TransitionState) => (
-        <div style={{...getDefaultStyles(type, duration), ...getTransitionStyles(type, state)}}>
+        <div style={{...getTransitionStyles(type, timeout, state)}}>
           {children}
         </div>
       )}
