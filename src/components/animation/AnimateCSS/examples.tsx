@@ -1,8 +1,21 @@
 import * as React from 'react';
-import { AnimateCSS, AnimationType } from './index';
+import { animateCSS, AnimateCSS } from './index';
 import { TransitionGroup } from 'react-transition-group';
+import { AnimationType } from './types';
 
-export const flashingText = () => <FlashingText/>;
+const flashingTextAnimation = animateCSS({
+  type: AnimationType.fadeInDown,
+  timeout: 500,
+  inProp: 'in', // managed for us by TransitionGroup
+});
+
+const Text = flashingTextAnimation(() => {
+  return (
+    <div>
+      {`Hey, i'm flashing!!!`}
+    </div>
+  );
+});
 
 export class FlashingText extends React.Component<{}, { isFlashing: boolean }> {
   state = {isFlashing: false};
@@ -23,7 +36,7 @@ export class FlashingText extends React.Component<{}, { isFlashing: boolean }> {
         </button>
         <div>
           <AnimateCSS in={isFlashing} type={AnimationType.shake} timeout={{enter: 1000, exit: 0}}>
-            Hey, i'm flashing!!!
+            <Text/>
           </AnimateCSS>
         </div>
       </div>
@@ -31,7 +44,25 @@ export class FlashingText extends React.Component<{}, { isFlashing: boolean }> {
   }
 }
 
-export const animatedList = () => <AnimatedList/>;
+interface AnimatedListItemProps {
+  className?: string;
+  style?: React.CSSProperties;
+  title: string;
+  onRemove: Function;
+}
+
+const arrayItemAnimation = animateCSS({
+  type: AnimationType.fadeInDown,
+  timeout: 500,
+  inProp: 'in', // managed for us by TransitionGroup
+});
+
+const AnimatedListItem = arrayItemAnimation(({style, className, title, onRemove}: AnimatedListItemProps) => (
+  <div className={className} style={style}>
+    {title}
+    <button onClick={() => onRemove()}>&times;</button>
+  </div>
+));
 
 class AnimatedList extends React.Component<{}, { items: string[] }> {
   state = {items: ['hello', 'world', 'click', 'me']};
@@ -57,9 +88,11 @@ class AnimatedList extends React.Component<{}, { items: string[] }> {
         <div style={{height: '200px', overflow: 'hidden'}}>
           <TransitionGroup>
             {this.state.items.map((item, i) => (
-              <AnimateCSS key={item} type={AnimationType.fadeInDown} timeout={500}>
-                <div>{item}<button onClick={() => this.handleRemove(i)}>&times;</button></div>
-              </AnimateCSS>
+              <AnimatedListItem
+                key={item}
+                title={item}
+                onRemove={() => this.handleRemove(i)}
+              />
             ))}
           </TransitionGroup>
         </div>
@@ -68,3 +101,6 @@ class AnimatedList extends React.Component<{}, { items: string[] }> {
     );
   }
 }
+
+export const animatedList = () => <AnimatedList/>;
+export const flashingText = () => <FlashingText/>;
