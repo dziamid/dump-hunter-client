@@ -35,6 +35,10 @@
   version "16.0.28"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.28.tgz#eb0b31272528da8f20477ec27569c4f767315b33"
 
+"@types/shortid@^0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@types/shortid/-/shortid-0.0.29.tgz#8093ee0416a6e2bf2aa6338109114b3fbffa0e9b"
+
 "@types/uuid@^3.4.3":
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.3.tgz#121ace265f5569ce40f4f6d0ff78a338c732a754"
@@ -5696,6 +5700,10 @@ shell-quote@1.6.1:
 shellwords@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
+
+shortid@^2.2.8:
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.8.tgz#033b117d6a2e975804f6f0969dbe7d3d0b355131"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"

@@ -1,37 +1,33 @@
 import * as React from 'react';
 import { Ticker, TickerRow } from './index';
 import { changes } from './mock';
-import { CurrencyChange } from '../../types/index';
-import { UUID, ensureUUID } from '../../utils/uuid';
-import { getTickerRows } from './utils';
+import { getTickerRows, createTickerRow } from './utils';
 
-export const basic = () => <Ticker rows={getTickerRows(changes)}/>;
+const rows = getTickerRows(changes);
 
-class Animating extends React.Component<{}, { changes: CurrencyChange[] }> {
+class Animating extends React.Component<{}, { rows: TickerRow[] }> {
   constructor(props: {}) {
     super(props);
 
     this.state = {
-      changes: changes,
+      rows: rows,
     };
 
   }
   componentDidMount() {
-
     setInterval(() => {
-      const newData: CurrencyChange[] = changes.slice(0, 5);
-
       this.setState({
-        changes: [...newData, ...this.state.changes],
+        rows: [createTickerRow(changes.slice(0, 5)), ...this.state.rows],
       });
     }, 5000);
   }
 
   render() {
     return (
-      <Ticker rows={getTickerRows(this.state.changes)}/>
+      <Ticker rows={this.state.rows}/>
     );
   }
 }
 
+export const basic = () => <Ticker rows={rows}/>;
 export const animating = () => <Animating/>;

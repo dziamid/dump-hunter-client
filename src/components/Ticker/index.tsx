@@ -1,18 +1,33 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { CurrencyChange } from '../../types/index';
-import { UUID } from '../../utils/uuid';
 
-const {SlideInDown} = require('animate-css-styled-components');
+export interface TickerRow {
+  uuid: string;
+  changes: CurrencyChange[];
+}
 
-export type TickerRow = (CurrencyChange & UUID)[];
-
-export interface OwnProps {
+export interface TickerProps {
   rows: TickerRow[];
 }
 
-export interface Props extends OwnProps {
-}
+export const Ticker = ({rows}: TickerProps) => {
+  return (
+    <div style={{overflow: 'hidden', height: 5 * 40, border: '1px solid black'}}>
+      <Table>
+        {rows.map((row) => (
+          <Row key={row.uuid}>
+            {row.changes.map(({name, price, change}) => (
+              <Cell>
+                {name} - {price}
+              </Cell>
+            ))}
+          </Row>
+        ))}
+      </Table>
+    </div>
+  );
+};
 
 const Table = styled.div`
   width: 100%;
@@ -33,34 +48,3 @@ const Cell = styled.div`
   padding: 0 5px;
   margin: 5px;
 `;
-
-const getRowKey = (row: TickerRow) => row[0].uuid;
-
-export const Ticker = ({rows}: Props) => {
-  const [first, ...following] = rows;
-
-  return (
-    <div style={{overflow: 'hidden', height: 5 * 40, border: '1px solid black'}}>
-      <Table>
-        <SlideInDown duration="0.8s" delay="1s">
-          <Row key={getRowKey(first)}>
-            {first.map(({name, price, change}) => (
-              <Cell>
-                {name}
-              </Cell>
-            ))}
-          </Row>
-        </SlideInDown>
-        {following.map((row) => (
-          <Row key={getRowKey(row)}>
-            {row.map(({name, price, change}) => (
-              <Cell>
-                {name}
-              </Cell>
-            ))}
-          </Row>
-        ))}
-      </Table>
-    </div>
-  );
-};

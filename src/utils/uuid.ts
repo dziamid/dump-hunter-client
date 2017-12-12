@@ -1,6 +1,4 @@
-import { v4 as uuid } from 'uuid';
-
-export { v4 as uuid } from 'uuid';
+import { generate } from 'shortid';
 
 export interface UUID {
   uuid: string;
@@ -8,6 +6,8 @@ export interface UUID {
 
 export const ensureUUID = <T>(data: T): T & UUID => {
   return Object.assign({
-    uuid: uuid(),
+    uuid: generate(),
   }, data);
 };
+
+export const uuid = () => generate();
