@@ -1,14 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { CurrencyChange } from '../../types/index';
-import { animateCSS } from '../animation/AnimateCSS';
-import { AnimationType } from '../animation/AnimateCSS/types';
 import { TransitionGroup } from 'react-transition-group';
-
-export interface TickerRow {
-  uuid: string;
-  changes: CurrencyChange[];
-}
+import { TickerRow } from './TickerRow';
 
 export interface TickerProps {
   rows: TickerRow[];
@@ -33,40 +26,3 @@ const Table = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const Cell = styled.div`
-  background: papayawhip;
-  color: palevioletred;
-  flex: 1;
-  line-height: 30px;
-  padding: 0 5px;
-  margin: 5px;
-`;
-
-const animateNewTickerRow = animateCSS({
-  type: AnimationType.fadeInDown,
-  timeout: 500,
-  inProp: 'in',
-});
-
-interface TickerRowProps extends TickerRow {
-  className: string;
-  style: React.CSSProperties;
-}
-
-const TickerRow = animateNewTickerRow(({changes, className, style}: TickerRowProps) => {
-  return (
-    <Row className={className} style={style}>
-      {changes.map(({name, price, change}, i) => (
-        <Cell key={i}>
-          {name} - {price}
-        </Cell>
-      ))}
-    </Row>
-  );
-});

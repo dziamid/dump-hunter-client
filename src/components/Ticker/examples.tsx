@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Ticker, TickerRow } from './index';
+import { Ticker } from './index';
 import { changes } from './mock';
 import { getTickerRows, createTickerRow } from './utils';
+import { TickerRow } from './TickerRow';
 
 const rows = getTickerRows(changes);
 
