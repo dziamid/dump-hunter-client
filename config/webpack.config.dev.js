@@ -146,6 +146,10 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+          {
+            test: /\.svg$/,
+            use: ['babel-loader', 'svgr/webpack'],
+          },
           // Compile .tsx?
           {
             test: /\.(ts|tsx)$/,
