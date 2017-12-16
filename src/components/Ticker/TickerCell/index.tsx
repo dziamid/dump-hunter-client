@@ -1,8 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { CurrencyChange } from '../../../types';
-
-const BtcIcon = require('../../svg/btc.svg').default;
+import { Currency, CurrencyChange } from '../../../types';
+import { CurrencyIcon } from '../../CurrencyIcon';
 
 const Cell = styled.div`
   background: papayawhip;
@@ -19,6 +18,6 @@ interface TickerCellProps extends CurrencyChange {
 
 export const TickerCell = ({name, change}: TickerCellProps) => (
   <Cell>
-    <BtcIcon width={20} height={20}/> {name} - {change * 100}
+    <CurrencyIcon name={Currency.bcy} width={20} height={20}/> {name} - {change * 100}
   </Cell>
 );

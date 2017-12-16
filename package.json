@@ -8,6 +8,7 @@
     "@types/react-transition-group": "^2.0.6",
     "@types/shortid": "^0.0.29",
     "@types/uuid": "^3.4.3",
+    "@types/webpack": "^3.8.1",
     "animate-css-styled-components": "^0.0.20",
     "animate.css": "^3.5.2",
     "autoprefixer": "7.1.2",

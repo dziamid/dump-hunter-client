@@ -93,6 +93,10 @@ module.exports = {
       '.json',
       '.web.jsx',
       '.jsx',
+      '.svg',
+      '.png',
+      '.jpg',
+      '.jpeg',
     ],
     alias: {
       

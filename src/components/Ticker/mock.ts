@@ -337,3 +337,5 @@ export const changes: CurrencyChange[] = [
     'change': -0.03387306
   }
 ];
+
+export const getNames = () => changes.map(c => c.name.toLocaleLowerCase()).sort();
