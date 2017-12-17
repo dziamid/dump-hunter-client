@@ -18,7 +18,7 @@ class Animating extends React.Component<{}, { rows: TickerRow[] }> {
   componentDidMount() {
     setInterval(() => {
       this.setState({
-        rows: [createTickerRow(changes.slice(0, 5)), ...this.state.rows],
+        rows: [createTickerRow(changes), ...this.state.rows],
       });
     }, 5000);
   }

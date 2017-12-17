@@ -8,6 +8,10 @@ import { TickerCell } from '../TickerCell';
 const Row = styled.div`
   display: flex;
   flex-direction: row;
+  
+  > * {
+    flex: 1;
+  }
 `;
 
 const enhance = animateCSS({
