@@ -10,7 +10,7 @@ const context = require.context('./icons', false, /\.(svg|png|jpg|jpeg)$/);
 const icons: Partial<CurrencyIcons> = {};
 
 context.keys().forEach((key: string) => {
-  const code = path.basename(key, path.extname(key)).toUpperCase()
+  const code = path.basename(key, path.extname(key)).toUpperCase();
   icons[code] = context(key);
 });
 
