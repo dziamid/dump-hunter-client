@@ -12,14 +12,13 @@ const loopArray = createArrayLooper();
 export function* rootSaga(): SagaIterator {
   const currencyChanges = yield call(fetchTickerCurrencyChanges);
   yield put(setTickerCurrencyChanges(currencyChanges));
-
+  yield fork(updateCurrencyChanges);
   const tickerRows = getTickerRows(loopArray(CELLS * ROWS, currencyChanges));
   yield put(setTickerRows(tickerRows));
   yield fork(updateTickerRows);
 }
 
 function* updateTickerRows(): SagaIterator {
-
   while (true) {
     yield call(delay, 4000);
     const currencyChanges = yield select(getHomeCurrencyChanges);
@@ -27,5 +26,13 @@ function* updateTickerRows(): SagaIterator {
     const nextRow = createTickerRow(loopArray(CELLS, currencyChanges));
     const nextTickerRows = [nextRow, ...tickerRows.slice(0, tickerRows.length - 1)];
     yield put(setTickerRows(nextTickerRows));
+  }
+}
+
+function* updateCurrencyChanges(): SagaIterator {
+  while (true) {
+    yield call(delay, 10000);
+    const currencyChanges = yield call(fetchTickerCurrencyChanges);
+    yield put(setTickerCurrencyChanges(currencyChanges));
   }
 }
