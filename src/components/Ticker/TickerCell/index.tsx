@@ -34,7 +34,7 @@ export const TickerCell = ({name, change}: TickerCellProps) => {
   const currencyCode = getCurrencyChangeCode(name);
   const currencyName = getCurrencyName(currencyCode);
   const changePercent = (change * 100).toFixed(2);
-  const changePrefix = change > 0 ? '+' : '-';
+  const changePrefix = change > 0 ? '+' : '';
 
   return (
     <Cell>

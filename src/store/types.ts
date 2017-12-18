@@ -5,5 +5,5 @@ export interface PreloadedState {
 }
 
 export interface StoreState {
-  home: HomeState,
+  home: HomeState;
 }

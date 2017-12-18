@@ -69,7 +69,9 @@
     "build-svg": "node scripts/build-svg.js",
     "test": "node scripts/test.js --env=jsdom",
     "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
+    "styleguide:build": "styleguidist build",
+    "lint": "tslint 'src/**/*.tsx' 'src/**/*.ts'",
+    "lint:fix": "tslint --fix 'src/**/*.tsx' 'src/**/*.ts'"
   },
   "devDependencies": {
     "@types/jest": "^21.1.8",

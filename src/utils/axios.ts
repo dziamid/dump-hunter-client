@@ -29,7 +29,7 @@ const stringifyRequestHead = (request: Request) => {
   const {id, url, method, data} = request;
 
   return `#${id} ${(method || '').toUpperCase()}: ${url}`;
-}
+};
 
 const stringifyRequest = (request: Request) => {
   const {id, url, method, data} = request;
