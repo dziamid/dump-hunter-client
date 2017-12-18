@@ -4,6 +4,8 @@ export const createArrayLooper = () => {
   const getNextItem = (items) => items[lastAccessedIndex++ % items.length];
 
   return (length: number, items: any[]) => {
-    return new Array(length).fill(null).map(() => getNextItem(items));
+    return array(length).map(() => getNextItem(items));
   };
 };
+
+export const array = (length: number) => new Array(length).fill(undefined);

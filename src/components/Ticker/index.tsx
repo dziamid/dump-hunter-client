@@ -1,7 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { TransitionGroup } from 'react-transition-group';
-import { TickerRow } from './TickerRow';
+import { ROW_HEIGHT, TickerRow } from './TickerRow';
+
+export const CELLS = 4;
+export const ROWS = 5;
 
 export interface TickerProps {
   rows: TickerRow[];
@@ -9,7 +12,7 @@ export interface TickerProps {
 
 export const Ticker = ({rows}: TickerProps) => {
   return (
-    <div style={{overflow: 'hidden', height: 5 * 40, border: '1px solid black'}}>
+    <div style={{overflow: 'hidden', height: ROWS * ROW_HEIGHT, border: '1px solid black'}}>
       <Table>
         <TransitionGroup>
           {rows.map((row) => (
