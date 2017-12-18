@@ -1,8 +1,9 @@
 import { SagaIterator } from 'redux-saga';
-import { call } from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
 import { fetchTickerCurrencyChanges } from '../../api';
+import { setTickerCurrencyChanges } from '../actions';
 
 export function* rootSaga(): SagaIterator {
   const currencyChanges = yield call(fetchTickerCurrencyChanges);
-  console.log('currencyChanges', currencyChanges);
+  yield put(setTickerCurrencyChanges(currencyChanges));
 }
