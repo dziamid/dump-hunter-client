@@ -16,7 +16,7 @@ const names: Partial<CurrencyNames> = data.reduce((result, item) => {
 }, {});
 
 export const getCurrencyName = (code: CurrencyCode): string => {
-  return names[code];
+  return names[code] || code;
 };
 
 export const getCurrencyChangeCode = (name: string): CurrencyCode => {
