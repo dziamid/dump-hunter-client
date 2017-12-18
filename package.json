@@ -44,6 +44,7 @@
     "redux-logger": "^3.0.6",
     "redux-ramda": "^1.0.1",
     "redux-saga": "^0.16.0",
+    "serve": "^6.4.2",
     "shortid": "^2.2.8",
     "source-map-loader": "^0.2.1",
     "style-loader": "0.18.2",
@@ -65,6 +66,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
+    "now-start": "serve build/",
     "build": "node scripts/build.js",
     "build-svg": "node scripts/build-svg.js",
     "test": "node scripts/test.js --env=jsdom",
