@@ -24,7 +24,7 @@ function* updateTickerRows(): SagaIterator {
     const currencyChanges = yield select(getHomeCurrencyChanges);
     const tickerRows = yield select(getHomeTickerRows);
     const nextRow = createTickerRow(loopArray(CELLS, currencyChanges));
-    const nextTickerRows = [nextRow, ...tickerRows.slice(0, tickerRows.length - 1)];
+    const nextTickerRows = tickerRows.slice(1).concat([nextRow]);
     yield put(setTickerRows(nextTickerRows));
   }
 }

@@ -26,7 +26,7 @@ export const animateCSS: AnimateCSS = config => ComposedComponent => props => {
   const {className, style = {}, ...otherProps} = props;
 
   return (
-    <Transition in={props[inProp]} timeout={{enter, exit}}>
+    <Transition unmountOnExit={true} in={props[inProp]} timeout={{enter, exit}}>
       {
         (state: TransitionState) => (
           <ComposedComponent

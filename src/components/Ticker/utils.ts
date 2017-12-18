@@ -6,7 +6,7 @@ import { TickerRow } from './TickerRow';
 import { CELLS } from './index';
 
 export const getTickerRows = (changes: CurrencyChange[]): TickerRow[] => {
-  const groups = splitEvery(CELLS, reverse(changes));
+  const groups = splitEvery(CELLS, changes);
 
   return groups.map(createTickerRow);
 };

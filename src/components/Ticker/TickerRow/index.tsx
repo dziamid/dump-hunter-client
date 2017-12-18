@@ -4,14 +4,11 @@ import { animateCSS } from '../../animation/AnimateCSS';
 import { AnimationType } from '../../animation/AnimateCSS/types';
 import { CurrencyChange } from '../../../types';
 import { TickerCell } from '../TickerCell';
-
-export const ROW_HEIGHT = 40;
+import { reverse } from 'ramda';
 
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  height: ${ROW_HEIGHT};
-  line-height: ${ROW_HEIGHT};
   
   > * {
     flex: 1;
@@ -20,7 +17,7 @@ const Row = styled.div`
 
 const enhance = animateCSS({
   type: AnimationType.fadeInDown,
-  timeout: 500,
+  timeout: {enter: 500, exit: 500},
   inProp: 'in',
 });
 
@@ -37,7 +34,7 @@ export interface TickerRow {
 export const TickerRow = enhance(({changes, className, style}: TickerRowProps) => {
   return (
     <Row className={className} style={style}>
-      {changes.map((change, i) => (
+      {reverse(changes).map((change, i) => (
         <TickerCell key={i} {...change} />
       ))}
     </Row>
